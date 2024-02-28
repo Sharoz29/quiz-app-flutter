@@ -3,7 +3,9 @@ import "package:quiz_app/custom_text_box.dart";
 import "package:quiz_app/gap_box.dart";
 
 class StartingScreen extends StatelessWidget {
-  const StartingScreen({super.key});
+  const StartingScreen(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
 
   @override
   build(context) {
@@ -25,7 +27,7 @@ class StartingScreen extends StatelessWidget {
               fontSize: 25),
           const GapBox(givenHeight: 50),
           OutlinedButton.icon(
-            onPressed: () => {},
+            onPressed: startQuiz,
             icon: const Icon(Icons.arrow_right_alt),
             style: OutlinedButton.styleFrom(foregroundColor: Colors.white),
             label: const CustomText(
