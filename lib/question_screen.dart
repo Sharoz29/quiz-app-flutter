@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
-import "package:quiz_app/custom_text_box.dart";
 import "package:quiz_app/gap_box.dart";
 import "package:quiz_app/answer_button.dart";
+import "package:quiz_app/data/questions.dart";
 
 class QuestionScreen extends StatefulWidget {
   const QuestionScreen({super.key});
@@ -12,33 +12,34 @@ class QuestionScreen extends StatefulWidget {
 }
 
 class _QuestionScreenState extends State<QuestionScreen> {
+  final currentQuestion = questions[0];
+
   @override
   build(context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const CustomText(
-              text: "The question", color: Colors.white, fontSize: 25),
-          const GapBox(givenHeight: 30),
-          AnswerButton(
-            onTap: () {},
-            answerText: "Answer 1",
-          ),
-          AnswerButton(
-            onTap: () {},
-            answerText: "Answer 2",
-          ),
-          AnswerButton(
-            onTap: () {},
-            answerText: "Answer 3",
-          ),
-          AnswerButton(
-            onTap: () {},
-            answerText: "Answer 4",
-          )
-        ],
+      child: Container(
+        margin: const EdgeInsets.all(35),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              currentQuestion.text,
+              style: const TextStyle(color: Colors.white, fontSize: 15),
+              textAlign: TextAlign.center,
+            ),
+            const GapBox(givenHeight: 30),
+            ...currentQuestion.getShuffleAnswers().map(
+              (item) {
+                return AnswerButton(
+                  onTap: () {},
+                  answerText: item,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
