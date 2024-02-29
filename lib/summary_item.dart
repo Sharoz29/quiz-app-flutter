@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiz_app/gap_box.dart';
 import 'package:quiz_app/question_identifier.dart';
@@ -36,12 +37,15 @@ class SummaryItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(
-                    itemData['user_answer'] as String,
-                    style: TextStyle(
-                      color: isCorrectAnswer
-                          ? const Color.fromARGB(255, 161, 241, 150)
-                          : const Color.fromARGB(255, 249, 76, 24),
+                  Expanded(
+                    child: Text(
+                      itemData['user_answer'] as String,
+                      maxLines: null,
+                      style: TextStyle(
+                        color: isCorrectAnswer
+                            ? const Color.fromARGB(255, 161, 241, 150)
+                            : const Color.fromARGB(255, 249, 76, 24),
+                      ),
                     ),
                   ),
                   Icon(
@@ -57,6 +61,7 @@ class SummaryItem extends StatelessWidget {
               if (!isCorrectAnswer)
                 Text(
                   itemData['correct_answer'] as String,
+                  maxLines: null,
                   style: const TextStyle(
                     color: Color.fromARGB(255, 161, 241, 150),
                   ),

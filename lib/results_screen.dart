@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/gap_box.dart';
 import "package:google_fonts/google_fonts.dart";
 import 'package:quiz_app/question_summary.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({required this.chosenAnswers, super.key});
+  const ResultScreen({required this.chosenAnswers,required this.restartQuiz, super.key});
 
   final List<String> chosenAnswers;
+
+  final void Function() restartQuiz;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -55,7 +56,7 @@ class ResultScreen extends StatelessWidget {
             ),
             const GapBox(givenHeight: 30),
             TextButton.icon(
-                onPressed: () {},
+                onPressed: restartQuiz,
                 style: TextButton.styleFrom(
                   foregroundColor: Colors.white,
                 ),
